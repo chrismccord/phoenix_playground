@@ -1,11 +1,13 @@
-Application.put_env(:phoenix_playground, PhoenixPlayground.Endpoint, debug_errors: true)
+compile_overrides = Application.get_env(:phoenix_playground, PhoenixPlayground.Endpoint)
+Application.put_env(:phoenix_playground, PhoenixPlayground.Endpoint, Keyword.merge([debug_errors: true], compile_overrides))
+salt = Application.get_env(:phoenix_playground, PhoenixPlayground.Endpoint)[:signing_salt] || "ll+Leuc4"
 
 defmodule PhoenixPlayground.Endpoint do
   @moduledoc false
 
   use Phoenix.Endpoint, otp_app: :phoenix_playground
 
-  @signing_salt "ll+Leuc4"
+  @signing_salt salt
 
   @session_options [
     store: :cookie,
