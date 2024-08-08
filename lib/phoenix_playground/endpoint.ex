@@ -1,4 +1,4 @@
-compile_overrides = Application.get_env(:phoenix_playground, PhoenixPlayground.Endpoint)
+compile_overrides = Application.get_env(:phoenix_playground, PhoenixPlayground.Endpoint) || []
 Application.put_env(:phoenix_playground, PhoenixPlayground.Endpoint, Keyword.merge([debug_errors: true], compile_overrides))
 salt = Application.get_env(:phoenix_playground, PhoenixPlayground.Endpoint)[:signing_salt] || "ll+Leuc4"
 
